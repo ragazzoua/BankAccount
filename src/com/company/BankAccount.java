@@ -10,15 +10,31 @@ public class BankAccount {
         this.accountNumber = accountNumber;
     }
 
-    public void deposit(double ammount){
+    public synchronized void deposit(double ammount){
         balance += ammount;
         System.out.println(balance);
     }
 
-    public void withdraw(double ammount){
+    public synchronized void withdraw(double ammount){
         balance -= ammount;
         System.out.println(balance);
     }
+
+
+    /*public void deposit(double ammount) {
+        synchronized (this) {
+            balance += ammount;
+        }
+        System.out.println(balance);
+    }
+
+    public void withdraw(double ammount) {
+        synchronized (this) {
+            balance -= ammount;
+
+        }
+        System.out.println(balance);
+    }*/
 
     @Override
     public String toString() {
