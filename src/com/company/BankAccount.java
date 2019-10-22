@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -27,24 +28,38 @@ public class BankAccount {
 
 
     public void deposit(double ammount) {
-        lock.lock();
         try {
-            balance += ammount;
-        } finally {
-            lock.unlock();
+            if (lock.tryLock(1000, TimeUnit.MILLISECONDS)) {
+                try {
+                    balance += ammount;
+                } finally {
+                    lock.unlock();
+                }
+            } else {
+                System.out.println("Could not get a lock");
+            }
+        } catch (InterruptedException e) {
+
         }
         System.out.println(balance);
     }
 
     public void withdraw(double ammount) {
-        lock.lock();
         try {
-            balance -= ammount;
-        } finally {
-            lock.unlock();
+            if (lock.tryLock(1000, TimeUnit.MILLISECONDS)) {
+                try {
+                    balance -= ammount;
+                } finally {
+                    lock.unlock();
+                }
+            } else {
+                System.out.println("Could not get a lock");
+            }
+        } catch (InterruptedException e) {
         }
         System.out.println(balance);
     }
+
 
     public String getAccountNumber() {
         return accountNumber;
