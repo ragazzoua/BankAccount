@@ -12,9 +12,19 @@ public class BankAccount {
 
     public void deposit(double ammount){
         balance += ammount;
+        System.out.println(balance);
     }
 
     public void withdraw(double ammount){
         balance -= ammount;
+        System.out.println(balance);
+    }
+
+    @Override
+    public String toString() {
+        return "BankAccount{" +
+                "balance=" + balance +
+                ", accountNumber='" + accountNumber + '\'' +
+                '}';
     }
 }
