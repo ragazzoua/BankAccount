@@ -4,13 +4,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class BankAccount1 {
+public class BankAccount {
 
     private double balance;
     private String accountNumber;
     private Lock lock;
 
-    public BankAccount1(String accountNumber, double initialBalance) {
+    public BankAccount(String accountNumber, double initialBalance) {
         this.balance = initialBalance;
         this.accountNumber = accountNumber;
         this.lock = new ReentrantLock();
